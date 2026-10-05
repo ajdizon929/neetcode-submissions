@@ -1,0 +1,14 @@
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        result = [1] * len(nums)
+        for i in range(len(nums)):
+            if i > 0:
+                result[i] = result[i-1] * nums[i-1]
+
+        suffix = 1
+        for i in range(len(nums)-1, -1, -1):
+            result[i] *= suffix
+            suffix *= nums[i]
+        
+        return result
+        
